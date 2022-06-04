@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
+import 'package:togg_app/core/locator.dart';
+import 'package:togg_app/core/managers/analytics_manager.dart';
 import 'package:togg_app/providers/favorites_provider.dart';
 import 'package:togg_app/widgets/card/marker_widget.dart';
 import 'map_view_model.dart';
@@ -81,7 +83,10 @@ class _MapViewState extends State<MapView> {
         top: 50.h,
         right: 20.w,
         child: GestureDetector(
-          onTap: () => mapViewModel.nextFavorite(),
+          onTap: () async {
+            mapViewModel.nextFavorite();
+            await locator<AnalyticsManager>().logOnTapFavouritiesButton();
+          },
           child: Container(
             width: 120.w,
             height: 40.h,

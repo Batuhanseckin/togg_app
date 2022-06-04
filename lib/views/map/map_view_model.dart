@@ -3,7 +3,9 @@ import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:togg_app/api/map_service.dart';
+import 'package:togg_app/core/locator.dart';
 import 'package:togg_app/core/logger.dart';
+import 'package:togg_app/core/managers/analytics_manager.dart';
 import 'package:togg_app/core/router_constants.dart';
 import 'package:togg_app/models/marker_model.dart';
 
@@ -11,6 +13,8 @@ class MapViewModel extends BaseViewModel {
   Logger log;
 
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+
+  AnalyticsManager analyticsManager = locator<AnalyticsManager>();
 
   MapViewModel() {
     log = getLogger(runtimeType.toString());
@@ -23,9 +27,10 @@ class MapViewModel extends BaseViewModel {
       markers[MarkerId(element.id.toString())] = Marker(
         markerId: MarkerId(element.id.toString()),
         position: LatLng(double.parse(element.lat), double.parse(element.lon)),
-        onTap: () {
+        onTap: () async {
           selectedMarkerId = element.id;
           notifyListeners();
+          await analyticsManager.logOnTapMarker(getMarkerById(element.id));
         },
       );
       notifyListeners();

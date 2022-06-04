@@ -1,15 +1,19 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:togg_app/api/auth_service.dart';
+import 'package:togg_app/core/locator.dart';
 import 'package:togg_app/core/logger.dart';
-import 'package:togg_app/core/managers/api_network_manager.dart';
+import 'package:togg_app/core/managers/analytics_manager.dart';
 import 'package:togg_app/core/managers/locale_manager.dart';
 import 'package:togg_app/core/router_constants.dart';
 
 class LoginViewModel extends BaseViewModel {
+  String token = "asklşdmaslkdmaskldmasklsdmaslkfma";
   Logger log;
+  AnalyticsManager analyticsManager = locator<AnalyticsManager>();
 
   LoginViewModel() {
     log = getLogger(runtimeType.toString());
@@ -46,20 +50,27 @@ class LoginViewModel extends BaseViewModel {
     // api request
     await Future.delayed(const Duration(seconds: 2));
 
-    String token = "asklşdmaslkdmaskldmasklsdmaslkfma";
+    if (nameController.text != "Test" || passController.text != "Togg") {
+      SnackbarService().showSnackbar(
+        message: "Username or password is incorrect",
+      );
+    } else {
+      // token set to cache
+      LocaleManager.instance.setStringValue(
+        PreferencesKeys.token,
+        token,
+      );
 
-    // token set to cache
-    LocaleManager.instance.setStringValue(
-      PreferencesKeys.token,
-      token,
-    );
+      await analyticsManager.setUser(token);
+      await analyticsManager.logLogin();
 
-    // token set to api context
-    ApiNetworkManager.instance.dio.options.headers["Authorization"] =
-        "Bearer " + token;
+      // token set to api context
+      // ApiNetworkManager.instance.dio.options.headers["Authorization"] =
+      //     "Bearer " + token;
 
-    // Route
-    nextMapPage();
+      // Route
+      nextMapPage();
+    }
 
     loginFakeIsProcess = false;
     notifyListeners();

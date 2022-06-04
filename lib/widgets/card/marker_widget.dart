@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:togg_app/core/locator.dart';
+import 'package:togg_app/core/managers/analytics_manager.dart';
 import 'package:togg_app/models/marker_model.dart';
 import 'package:togg_app/providers/favorites_provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -42,11 +44,14 @@ class MarkerWidget extends StatelessWidget {
     bool isFavoriteMarker =
         favoritesProvider.favoriteMarkers.contains(markerModel.id);
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         if (isFavoriteMarker) {
           favoritesProvider.removeFavorite(markerModel);
+          await locator<AnalyticsManager>()
+              .logRemoveFavoriteMarker(markerModel);
         } else {
           favoritesProvider.addFavorite(markerModel);
+          await locator<AnalyticsManager>().logAddFavoriteMarker(markerModel);
         }
       },
       child: Icon(

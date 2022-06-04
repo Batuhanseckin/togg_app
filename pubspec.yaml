@@ -3,7 +3,7 @@ description: A new Flutter project.
 publish_to: none
 version: 1.0.0+1
 environment:
-    sdk: '>=2.3.0 <3.0.0'
+    sdk: '>=2.7.0 <3.0.0'
 dependencies:
     flutter:
         sdk: flutter
@@ -22,11 +22,14 @@ dependencies:
     google_maps_flutter: ^2.1.5
     provider: ^4.3.3
     url_launcher: ^6.1.2
+    firebase_analytics: ^9.1.9
+    firebase_crashlytics: ^2.8.1
 
 dev_dependencies:
     flutter_test:
         sdk: flutter
     flutter_lints: ^1.0.0
+
 flutter:
     uses-material-design: true
 

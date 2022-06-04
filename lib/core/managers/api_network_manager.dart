@@ -18,7 +18,7 @@ class ApiNetworkManager {
 
     String token = LocaleManager.instance.getStringValue(PreferencesKeys.token);
     if (token != null && token.isNotEmpty) {
-      setToken(token);
+      // setToken(token);
     }
   }
 
