@@ -25,6 +25,7 @@ Run project development
 ```bash
   flutter run -t lib/main_dev.dart   
 ```
+disabled crashlytics, analytics and user events on development environment !!
 
 Run project stage
 
@@ -36,6 +37,12 @@ Run project production
 
 ```bash
   flutter run -t lib/prod_dev.dart   
+```
+
+Build project
+
+```bash
+  flutter build [file_format] -t [main_file_path.dart]  
 ```
 
 ## Screenshots  
