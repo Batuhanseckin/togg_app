@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,33 +12,20 @@ import 'core/router_constants.dart';
 import 'core/router.dart' as router;
 
 void main() async {
-  await runZonedGuarded<Future<void>>(() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-    await LocatorInjector.setUpLocator();
-    await FirebaseCrashlytics.instance
-        .setCrashlyticsCollectionEnabled(!kDebugMode);
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await LocatorInjector.setUpLocator();
 
-    FlutterError.onError = (FlutterErrorDetails details) {
-      // Report to the application zone to report to Crashlytics.
-      Zone.current.handleUncaughtError(details.exception, details.stack);
-    };
+  await dotenv.load(fileName: "dev.env");
 
-    runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => FavoritesProvider()),
-        ],
-        child: const MyApp(),
-      ),
-    );
-  }, (error, stackTrace) {
-    debugPrint("runZonedGuarded");
-    if (FirebaseCrashlytics.instance.isCrashlyticsCollectionEnabled) {
-      debugPrint("runZonedGuarded ->> crash aktif ");
-      FirebaseCrashlytics.instance.recordError(error, stackTrace);
-    }
-  });
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

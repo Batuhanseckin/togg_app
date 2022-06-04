@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:togg_app/core/constants/api_constants.dart';
 import 'package:togg_app/core/managers/locale_manager.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiNetworkManager {
   static ApiNetworkManager _instance;
@@ -8,7 +8,7 @@ class ApiNetworkManager {
 
   ApiNetworkManager._() {
     BaseOptions baseOptions = BaseOptions(
-      baseUrl: ApiConstants.baseUrl,
+      baseUrl: dotenv.env['BASE_URL'],
     );
     dio = Dio(baseOptions);
 
@@ -26,7 +26,7 @@ class ApiNetworkManager {
 
   void setBaseUrl(String baseUrl) {
     dio.options.baseUrl = baseUrl;
-    ApiConstants.baseUrl = baseUrl;
+    dotenv.env['BASE_URL'] = baseUrl;
   }
 
   void setToken(String token) {
