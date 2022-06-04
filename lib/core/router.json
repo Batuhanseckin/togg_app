@@ -1,0 +1,20 @@
+{
+    "last_updated": "Fri, 03 Jun 2022 18:36:42 GMT",
+    "routes": [
+        {
+            "file_path": "views/login/login_view.dart",
+            "route_name": "loginViewRoute",
+            "view_name": "LoginView"
+        },
+        {
+            "file_path": "views/map/map_view.dart",
+            "route_name": "mapViewRoute",
+            "view_name": "MapView"
+        },
+        {
+            "file_path": "views/favorites/favorites_view.dart",
+            "route_name": "favoritesViewRoute",
+            "view_name": "FavoritesView"
+        }
+    ]
+}
