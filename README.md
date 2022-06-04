@@ -1,7 +1,5 @@
 # Togg App
 
-## Run Locally
-
 Clone the project
 
 ```bash
@@ -20,11 +18,31 @@ Install dependencies
   flutter pub get
 ```
 
-Run project
+Run project development
 
 ```bash
-  flutter run
+  flutter run -t lib/main_dev.dart   
 ```
+disabled crashlytics, analytics and user events on development environment !!
+
+Run project stage
+
+```bash
+  flutter run -t lib/stage_dev.dart   
+```
+
+Run project production
+
+```bash
+  flutter run -t lib/prod_dev.dart   
+```
+
+Build project
+
+```bash
+  flutter build [file_format] -t [main_file_path.dart]  
+```
+
 ## Screenshots  
 
 <img src="https://i.hizliresim.com/jds8482.png" width="300" height="600">
