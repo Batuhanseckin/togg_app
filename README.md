@@ -1,7 +1,5 @@
 # Togg App
 
-## Run Locally
-
 Clone the project
 
 ```bash
