@@ -27,11 +27,9 @@ Run project
 ```
 ## Screenshots  
 
-<img src="https://i.hizliresim.com/rxoiqc3.png" width="300" height="600">
+<img src="https://i.hizliresim.com/jds8482.png" width="300" height="600">
 
-<img src="https://i.hizliresim.com/lkx2s06.png" width="300" height="600">
+<img src="https://i.hizliresim.com/fgvmvxh.png" width="300" height="600">
 
-<img src="https://i.hizliresim.com/1pfnmk9.png" width="300" height="600">
-
-<img src="https://i.hizliresim.com/18oet2o.png" width="300" height="600">
+<img src="https://i.hizliresim.com/nbr989e.png" width="300" height="600">
 
