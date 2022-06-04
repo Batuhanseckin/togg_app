@@ -1,2 +1,35 @@
-# togg_app
- 
+# Togg App
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Batuhanseckin/togg_app.git
+```
+
+Go to the project directory
+
+```bash
+  cd togg_app
+```
+
+Install dependencies
+
+```bash
+  flutter pub get
+```
+
+Run project
+
+```bash
+  flutter run
+```
+## Screenshots  
+
+<img src="https://i.hizliresim.com/jds8482.png" width="300" height="600">
+
+<img src="https://i.hizliresim.com/fgvmvxh.png" width="300" height="600">
+
+<img src="https://i.hizliresim.com/nbr989e.png" width="300" height="600">
+
