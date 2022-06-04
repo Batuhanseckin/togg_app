@@ -1,19 +1,17 @@
 # Togg App
 
-Kiramkolay.com, günümüz gayrimenkul kiralama sektörüne yeni bir bakış açısı getirerek sistemde var olan sorunları çözmeyi hedefleyen; kullanıcılarına sağladığı çözümler ile süreç yönetimini kolaylaştıran yeni bir online gayrimenkul yönetim platformudur.
-
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://github.com/Batuhanseckin/test_case.git
+  git clone https://github.com/Batuhanseckin/togg_app.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd test_case
+  cd togg_app
 ```
 
 Install dependencies
