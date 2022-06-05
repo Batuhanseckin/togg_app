@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stacked/stacked.dart';
 import 'package:togg_app/core/constants/app_constants.dart';
 import 'package:togg_app/core/managers/assets_manager.dart';
+import 'package:togg_app/core/validators/textfield_validators.dart';
+import 'package:togg_app/generated/easy_localization/locale_keys.g.dart';
 import 'login_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,9 +28,14 @@ class _LoginViewState extends State<LoginView> {
           ),
           onPressed: loginViewModel.loginFakeIsProcess
               ? () {}
-              : () => loginViewModel.loginFake(),
+              : () => loginViewModel.loginFake(
+                    loginViewModel.nameController.text,
+                    loginViewModel.passController.text,
+                  ),
           child: Text(
-            loginViewModel.loginFakeIsProcess ? "LOGGING IN.." : "LOGIN",
+            loginViewModel.loginFakeIsProcess
+                ? LocaleKeys.logingIn.tr()
+                : LocaleKeys.login.tr(),
             style: TextStyle(fontSize: 16.sp),
           ),
         ),
@@ -52,7 +60,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget get _buildBody => Form(
         key: loginViewModel.formKey,
-        autovalidateMode: AutovalidateMode.always,
+        autovalidateMode: loginViewModel.autovalidateMode,
         child: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.all(12.0),
@@ -63,14 +71,14 @@ class _LoginViewState extends State<LoginView> {
               _buildLogo,
               SizedBox(height: 80.h),
               _buildTf(
-                "Kullanıcı Adı",
+                LocaleKeys.userName.tr(),
                 loginViewModel.nameController,
                 false,
                 false,
               ),
               SizedBox(height: 10.h),
               _buildTf(
-                "Şifre",
+                LocaleKeys.password.tr(),
                 loginViewModel.passController,
                 loginViewModel.obscureText,
                 true,
@@ -92,10 +100,7 @@ class _LoginViewState extends State<LoginView> {
         width: 250.w,
         child: TextFormField(
           validator: (c) {
-            if (c.isEmpty) {
-              return "Bu alan boş bırakılamaz";
-            }
-            return null;
+            return TextFieldValidators.instance.isEmpty(c);
           },
           obscureText: obscureText,
           controller: controller,

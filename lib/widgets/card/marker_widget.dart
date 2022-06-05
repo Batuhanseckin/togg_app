@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:togg_app/core/locator.dart';
 import 'package:togg_app/core/managers/analytics_manager.dart';
+import 'package:togg_app/generated/easy_localization/locale_keys.g.dart';
 import 'package:togg_app/models/marker_model.dart';
 import 'package:togg_app/providers/favorites_provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -97,7 +99,7 @@ class MarkerWidget extends StatelessWidget {
             : Colors.red,
       ),
       child: Text(
-        markerModel.openNow ? "Open" : "Close",
+        markerModel.openNow ? LocaleKeys.open.tr() : LocaleKeys.close.tr(),
         style: TextStyle(
           fontSize: 12.sp,
           color: Colors.white,
@@ -116,7 +118,7 @@ class MarkerWidget extends StatelessWidget {
         }
       },
       child: Text(
-        "website",
+        LocaleKeys.webSite.tr(),
         style: TextStyle(
           fontSize: 12.sp,
           color: Colors.blue,

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:togg_app/core/managers/locale_manager.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiNetworkManager {
@@ -16,10 +15,10 @@ class ApiNetworkManager {
     // dio.interceptors.add(LoggerInterceptor());
     // dio.interceptors.add(LogOutInterceptor());
 
-    String token = LocaleManager.instance.getStringValue(PreferencesKeys.token);
-    if (token != null && token.isNotEmpty) {
+    // String token = LocaleManager.instance.getStringValue(PreferencesKeys.token);
+    // if (token != null && token.isNotEmpty) {
       // setToken(token);
-    }
+    // }
   }
 
   Dio dio;

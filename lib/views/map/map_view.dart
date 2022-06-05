@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +7,7 @@ import 'package:togg_app/core/locator.dart';
 import 'package:togg_app/core/managers/analytics_manager.dart';
 import 'package:togg_app/providers/favorites_provider.dart';
 import 'package:togg_app/widgets/card/marker_widget.dart';
+import '../../generated/easy_localization/locale_keys.g.dart';
 import 'map_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -103,7 +105,7 @@ class _MapViewState extends State<MapView> {
             ),
             alignment: Alignment.center,
             child: Text(
-              "Favourities",
+              LocaleKeys.favourities.tr(),
               style: TextStyle(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.bold,

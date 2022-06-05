@@ -15,14 +15,14 @@
             "name": "togg_app (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile",
+            "flutterMode": "debug",
             "program": "lib/main_stage.dart",
         },
         {
             "name": "togg_app (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release",
+            "flutterMode": "debug",
             "program": "lib/main_prod.dart",
         }
     ]

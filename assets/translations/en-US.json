@@ -1,0 +1,12 @@
+{
+    "login": "LOGIN",
+    "userName": "User Name",
+    "password": "Password",
+    "thisFieldCannotBeLeftBlank": "This field cannot be left blank",
+    "logingIn": "LOGGING IN..",
+    "open": "Open",
+    "close": "Close",
+    "favourities": "Favourities",
+    "webSite": "Web Site",
+    "backToMap": "Back To Map"
+}

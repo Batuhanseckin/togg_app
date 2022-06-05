@@ -18,7 +18,7 @@ class MapService {
       }
       return null;
     } catch (e) {
-      return null;
+      rethrow;
     }
   }
 }

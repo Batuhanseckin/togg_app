@@ -25,6 +25,7 @@ dependencies:
     firebase_analytics: ^9.1.9
     firebase_crashlytics: ^2.8.1
     flutter_dotenv: ^5.0.2
+    easy_localization: ^3.0.1
 
 dev_dependencies:
     flutter_test:
@@ -41,6 +42,7 @@ flutter:
         - dev.env
         - stage.env
         - prod.env
+        - assets/translations/
       
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

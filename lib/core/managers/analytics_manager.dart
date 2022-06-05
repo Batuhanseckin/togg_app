@@ -8,22 +8,27 @@ class AnalyticsManager {
   FirebaseAnalyticsObserver getAnalyticsObserver() =>
       FirebaseAnalyticsObserver(analytics: analytics);
 
+  bool userEvent = dotenv.env['USER_EVENTS'] == "true";
+
   Future setUser(String token) async {
-    if ((dotenv.env['USER_EVENTS']) as bool) {
+    if (userEvent) {
       await analytics.setUserId(id: token);
     }
   }
 
-  Future logLogin() async {
-    if ((dotenv.env['USER_EVENTS']) as bool) {
+  Future<bool> logLogin() async {
+    if (userEvent) {
       await analytics.logLogin(
         loginMethod: "username",
       );
+      return true;
+    } else {
+      return false;
     }
   }
 
   Future logOnTapMarker(MarkerModel markerModel) async {
-    if ((dotenv.env['USER_EVENTS']) as bool) {
+    if (userEvent) {
       await analytics.logEvent(
         name: "logOnTapMarker",
         parameters: markerModel.toJson(),
@@ -32,7 +37,7 @@ class AnalyticsManager {
   }
 
   Future logAddFavoriteMarker(MarkerModel markerModel) async {
-    if ((dotenv.env['USER_EVENTS']) as bool) {
+    if (userEvent) {
       await analytics.logEvent(
         name: "logAddFavoriteMarker",
         parameters: markerModel.toJson(),
@@ -41,7 +46,7 @@ class AnalyticsManager {
   }
 
   Future logRemoveFavoriteMarker(MarkerModel markerModel) async {
-    if ((dotenv.env['USER_EVENTS']) as bool) {
+    if (userEvent) {
       await analytics.logEvent(
         name: "logRemoveFavoriteMarker",
         parameters: markerModel.toJson(),
@@ -50,7 +55,7 @@ class AnalyticsManager {
   }
 
   Future logOnTapFavouritiesButton() async {
-    if ((dotenv.env['USER_EVENTS']) as bool) {
+    if (userEvent) {
       await analytics.logEvent(
         name: "logOnTapFacouritiesButton",
       );
@@ -58,7 +63,7 @@ class AnalyticsManager {
   }
 
   Future logFavouritiesPage() async {
-    if ((dotenv.env['USER_EVENTS']) as bool) {
+    if (userEvent) {
       await analytics.logEvent(
         name: "logFavouritiesPage",
       );
@@ -66,7 +71,7 @@ class AnalyticsManager {
   }
 
   Future logOnTapBackToMapButton() async {
-    if ((dotenv.env['USER_EVENTS']) as bool) {
+    if (userEvent) {
       await analytics.logEvent(
         name: "logOnTapBackToMapButton",
       );

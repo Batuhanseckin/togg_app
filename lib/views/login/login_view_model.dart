@@ -19,12 +19,8 @@ class LoginViewModel extends BaseViewModel {
     log = getLogger(runtimeType.toString());
   }
 
-  TextEditingController nameController = TextEditingController(
-    text: "Test",
-  );
-  TextEditingController passController = TextEditingController(
-    text: "Togg",
-  );
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
@@ -36,44 +32,51 @@ class LoginViewModel extends BaseViewModel {
 
   bool loginFakeIsProcess = false;
 
-  loginFake() async {
-    // validators
-    if (!formKey.currentState.validate()) {
-      autovalidateMode = AutovalidateMode.always;
+  loginFake(String username, String password) async {
+    FirebaseCrashlytics.instance.crash();
+    try {
+      // validators
+      if (!formKey.currentState.validate()) {
+        autovalidateMode = AutovalidateMode.always;
+        notifyListeners();
+        return;
+      }
+
+      loginFakeIsProcess = true;
       notifyListeners();
-      return;
+
+      // api request
+      await Future.delayed(const Duration(seconds: 2));
+
+      if (username != "Test" || password != "Togg") {
+        SnackbarService().showSnackbar(
+          message: "Username or password is incorrect",
+        );
+      } else {
+        // token set to cache
+        LocaleManager.instance.setStringValue(
+          PreferencesKeys.token,
+          token,
+        );
+
+        await analyticsManager.setUser(token);
+        await analyticsManager.logLogin();
+
+        // token set to api context
+        // ApiNetworkManager.instance.dio.options.headers["Authorization"] =
+        //     "Bearer " + token;
+
+        // Route
+        nextMapPage();
+      }
+
+      loginFakeIsProcess = false;
+      notifyListeners();
+    } catch (e) {
+      loginFakeIsProcess = false;
+      notifyListeners();
+      rethrow;
     }
-
-    loginFakeIsProcess = true;
-    notifyListeners();
-
-    // api request
-    await Future.delayed(const Duration(seconds: 2));
-
-    if (nameController.text != "Test" || passController.text != "Togg") {
-      SnackbarService().showSnackbar(
-        message: "Username or password is incorrect",
-      );
-    } else {
-      // token set to cache
-      LocaleManager.instance.setStringValue(
-        PreferencesKeys.token,
-        token,
-      );
-
-      await analyticsManager.setUser(token);
-      await analyticsManager.logLogin();
-
-      // token set to api context
-      // ApiNetworkManager.instance.dio.options.headers["Authorization"] =
-      //     "Bearer " + token;
-
-      // Route
-      nextMapPage();
-    }
-
-    loginFakeIsProcess = false;
-    notifyListeners();
   }
 
   bool loginIsProcess = false;

@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:togg_app/core/locator.dart';
 import 'package:togg_app/core/managers/analytics_manager.dart';
+import 'package:togg_app/generated/easy_localization/locale_keys.g.dart';
 import 'package:togg_app/providers/favorites_provider.dart';
 import 'package:togg_app/widgets/card/marker_widget.dart';
 import 'favorites_view_model.dart';
@@ -28,7 +30,7 @@ class _FavoritesViewState extends State<FavoritesView> {
             await locator<AnalyticsManager>().logOnTapBackToMapButton();
           },
           child: Text(
-            "Back to Map",
+            LocaleKeys.backToMap.tr(),
             style: TextStyle(
               fontSize: 16.sp,
             ),
@@ -55,7 +57,7 @@ class _FavoritesViewState extends State<FavoritesView> {
           appBar: AppBar(
             leading: Container(),
             backgroundColor: const Color(0xFF18C1E8),
-            title: const Text("Favourities"),
+            title: Text(LocaleKeys.favourities.tr()),
             centerTitle: true,
           ),
           body: _buildBody,
