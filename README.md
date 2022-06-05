@@ -43,6 +43,9 @@ Build project
   flutter build [file_format] -t [main_file_path.dart]  
 ```
 
+## Unit Test
+<img src="https://i.hizliresim.com/8u98pyj.png" width="300" height="600">
+
 ## Screenshots  
 
 <img src="https://i.hizliresim.com/jds8482.png" width="300" height="600">
