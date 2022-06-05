@@ -23,7 +23,7 @@ Run project development
 ```bash
   flutter run -t lib/main_dev.dart   
 ```
-disabled crashlytics, analytics and user events on development environment !!
+crashlytics, analytics and user events logging disabled in development environment !!
 
 Run project stage
 
