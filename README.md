@@ -44,7 +44,7 @@ Build project
 ```
 
 ## Unit Test
-<img src="https://i.hizliresim.com/8u98pyj.png" width="1400" height="900">
+<img src="https://i.hizliresim.com/8u98pyj.png" width="700" height="450">
 
 ## Screenshots  
 
